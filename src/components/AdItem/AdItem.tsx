@@ -14,7 +14,7 @@ export const AdItem = (props) => {
 
     return (
         <Item className="adItem">
-            <Link to={`/ad/${props.data.id ? props.data.id : props.data._id}`}>
+            <Link to={`/olx-reactjs/ad/${props.data.id ? props.data.id : props.data._id}`}>
                 <div className="itemImage">
 
                     {props.data.images &&

@@ -15,17 +15,17 @@ import { Account } from '../pages/Account/Account';
 export const MainRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/signin" element={<SignIn />} />
-      <Route path="/signup" element={<SignUp />} />
-      <Route path="/ad/:id" element={<AdPage />} />
-      <Route path="/post-an-ad" element={
+      <Route path="/olx-reactjs" element={<Home />} />
+      <Route path="/olx-reactjs/signin" element={<SignIn />} />
+      <Route path="/olx-reactjs/signup" element={<SignUp />} />
+      <Route path="/olx-reactjs/ad/:id" element={<AdPage />} />
+      <Route path="/olx-reactjs/post-an-ad" element={
         <RequireAuth>
           <AddAd />
         </RequireAuth>
       } />
-      <Route path="/ads" element={<Ads />} />
-      <Route path="/my-account" element={
+      <Route path="/olx-reactjs/ads" element={<Ads />} />
+      <Route path="/olx-reactjs/my-account" element={
         <RequireAuth>
           <Account />
         </RequireAuth>
