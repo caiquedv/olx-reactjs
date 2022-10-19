@@ -3,6 +3,7 @@ import qs from 'qs'
 
 const BASEAPI = 'https://lit-caverns-01904.herokuapp.com';
 // const BASEAPI = 'http://localhost:2000';
+console.log(Cookies.get('tokenOlx'))
 
 const apiFetchFile = async (endpoint, body) => {
     if (!body.token) {
@@ -28,7 +29,7 @@ const apiFetchFile = async (endpoint, body) => {
 const apiFetchPost = async (endpoint, body) => {
 
     if (!body.token) {
-        let token = Cookies.get('token');
+        let token = Cookies.get('tokenOlx');
         if (token) {
             body.token = token;
             // console.log(token)
@@ -55,7 +56,7 @@ const apiFetchPost = async (endpoint, body) => {
 
 async function apiFetchPut(endpoint, body) {
     if (!body.token) {
-        let token = Cookies.get('token');
+        let token = Cookies.get('tokenOlx');
         if (token) {
             body.token = token;
         }
@@ -81,7 +82,7 @@ async function apiFetchPut(endpoint, body) {
 const apiFetchGet = async (endpoint, body: any = []) => {
 
     if (!body.token) {
-        let token = Cookies.get('token');
+        let token = Cookies.get('tokenOlx');
         if (token) {
             body.token = token;
         }

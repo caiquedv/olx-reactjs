@@ -13,7 +13,7 @@ export const Account = () => {
 
     useEffect(() => {
         const getUserInfo = async () => {
-            const json = await OlxAPI.getUserData(Cookies.get('token'));
+            const json = await OlxAPI.getUserData(Cookies.get('tokenOlx'));
             setUserJson(json);
             // console.log(json)
         };
