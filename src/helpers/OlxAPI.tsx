@@ -6,9 +6,9 @@ const BASEAPI = 'https://lit-caverns-01904.herokuapp.com';
 
 const apiFetchFile = async (endpoint, body) => {
     if (!body.token) {
-        let token = Cookies.get('token');
+        let token = Cookies.get('tokenOlx');
         if (token) {
-            body.append('token', token);
+            body.append('tokenOlx', token);
         }
     }
     const res = await fetch(BASEAPI + endpoint, {
