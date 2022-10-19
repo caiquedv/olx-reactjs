@@ -9,7 +9,7 @@ export const Header = () => {
 
     const handleLogout = () => {
         doLogout();
-        window.location.href = '/';
+        window.location.href = '/olx-reactjs/';
     }
     // console.log(window.location.pathname)
 
