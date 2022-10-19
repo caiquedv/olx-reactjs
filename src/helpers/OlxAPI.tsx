@@ -3,7 +3,7 @@ import qs from 'qs'
 
 const BASEAPI = 'https://lit-caverns-01904.herokuapp.com';
 // const BASEAPI = 'http://localhost:2000';
-console.log(Cookies.get('tokenOlx'))
+// console.log(Cookies.get('tokenOlx'))
 
 const apiFetchFile = async (endpoint, body) => {
     if (!body.token) {
