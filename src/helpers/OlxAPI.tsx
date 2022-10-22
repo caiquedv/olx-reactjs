@@ -13,6 +13,7 @@ const apiFetchFile = async (endpoint, body) => {
     }
     const res = await fetch(BASEAPI + endpoint, {
         method: 'POST',
+        headers: { 'content-type': 'multipart/form-data' },
         body
     });
     const json = await res.json();
