@@ -3,13 +3,12 @@ import qs from 'qs'
 
 const BASEAPI = 'https://lit-caverns-01904.herokuapp.com';
 // const BASEAPI = 'http://localhost:2000';
-// console.log(Cookies.get('tokenOlx'))
 
 const apiFetchFile = async (endpoint, body) => {
     if (!body.token) {
         let token = Cookies.get('tokenOlx');
         if (token) {
-            body.append('tokenOlx', token);
+            body.append('token', token);
         }
     }
     const res = await fetch(BASEAPI + endpoint, {
@@ -17,9 +16,10 @@ const apiFetchFile = async (endpoint, body) => {
         body
     });
     const json = await res.json();
+    // console.log(body)
 
     if (json.notallowed) {
-        window.location.href = '/signin';
+        window.location.href = '/olx-reactjs/signin';
         return;
     }
 
@@ -47,7 +47,7 @@ const apiFetchPost = async (endpoint, body) => {
     const json = await res.json();
 
     if (json.notallowed) {
-        window.location.href = '/signin';
+        window.location.href = '/olx-reactjs/signin';
         return;
     }
 
@@ -73,7 +73,7 @@ async function apiFetchPut(endpoint, body) {
     const data = await res.json()
 
     if (data.notallowed) {
-        window.location.href = '/signin';
+        window.location.href = '/olx-reactjs/signin';
         return;
     }
     return data;
@@ -91,7 +91,7 @@ const apiFetchGet = async (endpoint, body: any = []) => {
     const json = await res.json();
 
     if (json.notallowed) {
-        window.location.href = 'signin';
+        window.location.href = '/olx-reactjs/signin';
         return;
     }
 

@@ -51,7 +51,7 @@ export const AddAd = () => {
             fData.append('price', price);
             fData.append('priceNegotiable', priceNegotiable);
             fData.append('description', desc);
-            fData.append('category', category);console.log(category)
+            fData.append('category', category);
             
 
             if(fileField.current.files.length > 0) {
@@ -59,11 +59,11 @@ export const AddAd = () => {
                     fData.append('img', fileField.current.files[i]);
                 }
             }
-            // console.log(fData)
-            const json = await OlxAPI.addAd(fData);
             
-            if(!json.error) {
-                navigate(`/ad/${json.id}`);
+            const json = await OlxAPI.addAd(fData);
+            console.log('aq')
+            if(!json.error) {console.log(json)
+                navigate(`/olx-reactjs/ad/${json.id}`);
                 return;
             } else {
                 setError(json.error);
