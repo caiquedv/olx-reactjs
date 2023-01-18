@@ -1,8 +1,8 @@
 import Cookies from 'js-cookie';
 import qs from 'qs'
 
-const BASEAPI = 'https://lit-caverns-01904.herokuapp.com';
-// const BASEAPI = 'http://localhost:2000';
+// const BASEAPI = 'https://lit-caverns-01904.herokuapp.com';
+const BASEAPI = 'http://localhost:2000';
 
 const apiFetchFile = async (endpoint, body) => {
     if (!body.token) {
