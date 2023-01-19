@@ -2,7 +2,7 @@ import Cookies from 'js-cookie';
 import qs from 'qs'
 
 // const BASEAPI = 'https://lit-caverns-01904.herokuapp.com';
-const BASEAPI = 'http://localhost:2000'; 
+const BASEAPI = 'http://localhost/adianti/template'; 
 
 const apiFetchFile = async (endpoint, body) => {
     if (!body.token) {
@@ -80,15 +80,30 @@ async function apiFetchPut(endpoint, body) {
     return data;
 }
 
-const apiFetchGet = async (endpoint, body: any = []) => {
+// const apiFetchGet = async (endpoint, body: any = []) => {
+//     if (!body.token) {
+//         let token = Cookies.get('tokenOlx');
+//         if (token) {
+//             body.token = token;
+//         }
+//     }
+//     const res = await fetch(`${BASEAPI + endpoint}?${qs.stringify(body)}`);
+//     const json = await res.json();
 
-    if (!body.token) {
-        let token = Cookies.get('tokenOlx');
-        if (token) {
-            body.token = token;
-        }
-    }
-    const res = await fetch(`${BASEAPI + endpoint}?${qs.stringify(body)}`);
+//     if (json.notallowed) {
+//         window.location.href = '/olx-reactjs/signin';
+//         return;
+//     }
+
+//     return json;
+// };
+
+const apiFetchGet = async (endpoint, body: any = []) => {
+    const res = await fetch(BASEAPI + endpoint, {
+        method: 'GET',
+        headers: { 'Authorization': 'Basic 123' },
+    });
+
     const json = await res.json();
 
     if (json.notallowed) {
@@ -120,14 +135,14 @@ export const OlxAPI = {
         const json = await apiFetchGet(
             '/states'
         );
-        return json.states;
+        return json.data;
     },
 
     getCategories: async () => {
         const json = await apiFetchGet(
             '/categories'
         );
-        return json.categories;
+        return json.data;
     },
 
     getAds: async (options) => {

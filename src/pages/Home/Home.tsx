@@ -66,11 +66,11 @@ export const Home = () => {
             <PageContainer>
                 <PageArea>
                     <h2>Anúncios Recentes</h2>
-                    <div className="list">
+                    {/* <div className="list">
                         {adList.map((item, index)=>
                             <AdItem key={index} data={item} />
                         )}
-                    </div>
+                    </div> */}
                     <Link to="/olx-reactjs/ads" className="seeAllLink">Ver Todos</Link>
 
                     <hr /> 
