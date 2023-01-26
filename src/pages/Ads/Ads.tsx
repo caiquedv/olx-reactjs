@@ -120,7 +120,7 @@ export const Ads = () => {
                         <select name="state" value={state} onChange={e => setState(e.target.value)}>
                             <option></option>
                             {stateList.map((item: any, index) =>
-                                <option key={index} value={item.name}>{item.name}</option>
+                                <option key={index} value={item.id}>{item.name}</option>
                             )}
                         </select>
 
@@ -128,8 +128,8 @@ export const Ads = () => {
                         <ul>
                             {categories.map((item: any, index) =>
                                 <li key={index}
-                                    className={cat == item.slug ? 'categoryItem active' : 'categoryItem'}
-                                    onClick={cat != item.slug ? () => setCat(item.slug) : () => setCat('')}
+                                    className={cat == item.id ? 'categoryItem active' : 'categoryItem'}
+                                    onClick={cat != item.id ? () => setCat(item.id) : () => setCat('')}
                                 >
                                     <img src={item.img} alt="" />
                                     <span>{item.name}</span>

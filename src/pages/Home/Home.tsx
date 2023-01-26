@@ -49,7 +49,7 @@ export const Home = () => {
                             <input type="text" name="q" placeholder="O que você procura?" />
                             <select name="state" id="">
                                 {stateList.map((item: any, index) =>
-                                    <option key={index} value={item.name}>{item.name}</option>
+                                    <option key={index} value={item.id}>{item.name}</option>
                                 )}
                             </select>
                             <button>Pesquisar</button>
@@ -57,7 +57,7 @@ export const Home = () => {
                     </div>
                     <div className="categoryList">
                         {categories.map((item: any, index) =>
-                            <Link key={index} to={`/olx-reactjs/ads?cat=${item.slug}`} className="categoryItem">
+                            <Link key={index} to={`/olx-reactjs/ads?cat=${item.id}`} className="categoryItem">
                                 <img src={item.img} alt="" />
                                 <span>{item.name}</span>
                             </Link>
