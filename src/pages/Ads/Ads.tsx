@@ -23,7 +23,7 @@ export const Ads = () => {
     const [adsTotal, setAdsTotal] = useState(0);
     const [stateList, setStateList] = useState([]);
     const [categories, setCategories] = useState([]);
-    const [adList, setAdList] = useState([]);
+    const [adList, setAdList] = useState<any>([]);
     const [pageCount, setPageCount] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -42,10 +42,10 @@ export const Ads = () => {
             state,
             offset
         });
-        setAdList(json.ads);
-        setAdsTotal(json.total);
+        setAdList([json.data][0]);
+        setAdsTotal(json.data.total);
         setResultOpacity(1);
-        setLoading(false);
+        setLoading(false); //console.log([json])
     }
 
     useEffect(() => {

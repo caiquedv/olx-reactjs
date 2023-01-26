@@ -7,10 +7,6 @@ import { useState } from "react";
 import { OlxAPI } from "../../helpers/OlxAPI";
 import { doLogin } from "../../helpers/AuthHandler";
 
-//suporte@b7web.com.br 12345
-
-// teste 321 PB teste@teste.com 1234 -invalido --> $2b$10$rZQw55gn5t8moxSQA1JTJeDqSB0x8bh/ybMMW7Cg3eoG.Yrkbu24C
-
 export const SignUp = () => { 
     const [name, setName] = useState('');
     const [stateLoc, setStateLoc] = useState('');
@@ -30,7 +26,7 @@ export const SignUp = () => {
         }
         getStates();
     }, []);
-
+    // console.log()
     const handleSubmit = async (e) => {
         e.preventDefault();
         setDisabled(true);
@@ -43,12 +39,12 @@ export const SignUp = () => {
         }
 
         const json = await OlxAPI.register(name, email, password, stateLoc);
-        // console.log()
-        // alert(json.token)
+        console.log(json)
+        
         if (json.error) {
             setError(json.error);
         } else {
-            doLogin(json.token);
+            doLogin(json.data.token);
             
             window.location.href = '/';
         }
@@ -84,7 +80,7 @@ export const SignUp = () => {
                             >
                                 <option></option>
                                 {stateList.map((item: any, index)=>
-                                    <option key={index} value={item._id}>{item.name}</option>
+                                    <option key={index} value={item.id}>{item.name}</option>
                                 )}
                             </select>
                         </div>

@@ -139,12 +139,12 @@ export const UserAdsForm = (userJson) => {
 
     return (
         <AdsArea>
-            {userAds.map((item: any, index) =>
+            {/* {userAds.map((item: any, index) =>
                 <div className="editableAds" key={index}>
                     <AdItem data={item} />
                     <button id="" onClick={(e) => modalHandler(e, item)}>Editar</button>
                 </div>
-            )}
+            )} */}
             {!disabledModal &&
 
 

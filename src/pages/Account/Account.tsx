@@ -30,10 +30,10 @@ export const Account = () => {
             </div>
 
 
-            <div className="AdsArea">
+            {/* <div className="AdsArea">
                 <h2>Meus Anúncios</h2>
                 <UserAdsForm userData={userJson} />
-            </div>
+            </div> */}
 
         </MyAccContainer>
 

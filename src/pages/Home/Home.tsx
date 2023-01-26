@@ -6,11 +6,13 @@ import { Link } from 'react-router-dom';
 import { OlxAPI } from "../../helpers/OlxAPI";
 import { AdItem } from "../../components/AdItem/AdItem";
 
+import Cookies from 'js-cookie';
+
 export const Home = () => {
     const [stateList, setStateList] = useState([]);
     const [categories, setCategories] = useState([]);
-    const [adList, setAdList] = useState([]);
-
+    const [adList, setAdList] = useState<any>([]);
+    // console.log(Cookies.get('tokenOlx'));
     useEffect(() => {
         const getStates = async () => {
             const slist = await OlxAPI.getStates();
@@ -33,10 +35,10 @@ export const Home = () => {
                 sort: 'desc',
                 limit: 8
             });
-            setAdList(json.ads);
+            setAdList([json][0].data); //console.log(adList)
         };
-        getRecentAds();
-    }, []);
+        getRecentAds(); //console.log(adList[0].data)
+    }, [stateList]);
 
     return (
         <>
@@ -66,11 +68,11 @@ export const Home = () => {
             <PageContainer>
                 <PageArea>
                     <h2>Anúncios Recentes</h2>
-                    {/* <div className="list">
+                    <div className="list">
                         {adList.map((item, index)=>
                             <AdItem key={index} data={item} />
                         )}
-                    </div> */}
+                    </div>
                     <Link to="/olx-reactjs/ads" className="seeAllLink">Ver Todos</Link>
 
                     <hr /> 

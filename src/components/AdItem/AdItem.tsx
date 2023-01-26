@@ -9,7 +9,7 @@ export const AdItem = (props) => {
         price = 'Preço Negociável';
     } else {
         price = `R$ ${props.data.price}`;
-    }
+    } // console.log(props)
     // console.log(props.data);
 
     return (

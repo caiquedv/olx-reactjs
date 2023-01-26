@@ -89,9 +89,9 @@ export const UserDataForm = (userJson) => {
     useEffect(() => {
         const getUserInfo = (json) => {
             try {
-            setUserName(json.userData.name);
-            setUserEmail(json.userData.email);
-            setUserState(json.userData.state);
+            setUserName(json.userData.data[0].name);
+            setUserEmail(json.userData.data[0].email);
+            setUserState(json.userData.data[0].state);
             } catch {}
         };
 
@@ -136,7 +136,7 @@ export const UserDataForm = (userJson) => {
                             <option>{userState}</option>
                         }
                         {stateList.map((state: any, k) =>
-                            <option key={k} value={state.name}>{state.name}</option>
+                            <option key={k} value={state.id}>{state.name}</option>
                         )}
                     </select>
                     <button id='state'

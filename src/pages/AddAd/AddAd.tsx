@@ -46,10 +46,12 @@ export const AddAd = () => {
         }
 
         if (errors.length === 0) {
+            // setPrice())
             const fData: any = new FormData();
+            fData.append('status', true);
             fData.append('title', title);
-            fData.append('price', price);
-            fData.append('priceNegotiable', priceNegotiable);
+            fData.append('price', price.replace("R$ ", ""));
+            fData.append('price_negotiable', priceNegotiable);
             fData.append('description', desc);
             fData.append('category', category);
             
@@ -61,9 +63,9 @@ export const AddAd = () => {
             }
             
             const json = await OlxAPI.addAd(fData);
-            console.log('aq')
+            // console.log('aq')
             if(!json.error) {console.log(json)
-                navigate(`/olx-reactjs/ad/${json.id}`);
+                navigate(`/olx-reactjs/ad/${json.data.id}`);
                 return;
             } else {
                 setError(json.error);
@@ -112,7 +114,7 @@ export const AddAd = () => {
                             >
                                 <option></option>
                                 {categories && categories.map((i: any, index) =>
-                                    <option key={index} value={i.slug}>{i.name}</option>
+                                    <option key={index} value={i.id}>{i.name}</option>
                                 )}
                             </select>
                         </div>

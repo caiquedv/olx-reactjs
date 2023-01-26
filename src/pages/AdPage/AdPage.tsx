@@ -18,8 +18,8 @@ export const AdPage = () => {
     useEffect(() => {
         const getAdInfo = async (id) => {
             const json = await OlxAPI.getAd(id, true);
-            setAdInfo(json);
-            setLoading(false);
+            setAdInfo(json.data);//console.log(adInfo)
+            // setLoading(false);
         }
         getAdInfo(id); 
     }, [id]);
@@ -42,9 +42,9 @@ export const AdPage = () => {
                     Você está aqui:
                     <Link to="/olx-reactjs/">Home</Link>
                     /
-                    <Link to={`/olx-reactjs/ads?state=${adInfo.stateName}`}>{adInfo.stateName}</Link>
+                    <Link to={`/olx-reactjs/ads?state=${adInfo.state}`}>{adInfo.state}</Link>
                     /
-                    <Link to={`/olx-reactjs/ads?state=${adInfo.stateName}&cat=${adInfo.category.slug}`}>{adInfo.category.name}</Link>
+                    <Link to={`/olx-reactjs/ads?state=${adInfo.state}&cat=${adInfo.category}`}>{adInfo.category}</Link>
                     / {adInfo.title}
                 </BreadCrumb>
             }
@@ -88,10 +88,10 @@ export const AdPage = () => {
                 <div className="rightSide">
                     <div className="box box--padding">
                         {loading && <Fake height={20} />}
-                        {adInfo.priceNegotiable &&
+                        {adInfo.price_negotiable === "true" &&
                             "Preço Negociável"
                         }
-                        {!adInfo.priceNegotiable && adInfo.price &&
+                        {adInfo.price_negotiable !== "true" && adInfo.price &&
                             <div className="price">Preço: <span>R$ {adInfo.price}</span></div>
                         }
                     </div>

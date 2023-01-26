@@ -20,12 +20,12 @@ export const SignIn = () => {
         setError('');
 
         const json = await OlxAPI.login(email, password);
-        // console.log(json)
+        // console.log(json.data)
 
-        if(json.error) {
-            setError(json.error);
+        if(json.data === null) {
+            setError('Usuário não encontrado');
         } else {
-            doLogin(json.token, rememberPassword);
+            doLogin(json.data.token, rememberPassword);
             window.location.href = '/olx-reactjs/';
         }
         setDisabled(false);        

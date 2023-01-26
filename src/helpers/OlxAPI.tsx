@@ -2,7 +2,7 @@ import Cookies from 'js-cookie';
 import qs from 'qs'
 
 // const BASEAPI = 'https://lit-caverns-01904.herokuapp.com';
-const BASEAPI = 'http://localhost/adianti/template'; 
+const BASEAPI = 'http://localhost/adianti/template';
 
 const apiFetchFile = async (endpoint, body) => {
     if (!body.token) {
@@ -13,7 +13,7 @@ const apiFetchFile = async (endpoint, body) => {
     }
     const res = await fetch(BASEAPI + endpoint, {
         method: 'POST',
-        headers: { 'content-type': 'multipart/form-data' },
+        headers: { 'Accept': '*/*',  'Authorization': 'Basic 123' },
         body
     });
     const json = await res.json();
@@ -29,19 +29,20 @@ const apiFetchFile = async (endpoint, body) => {
 
 const apiFetchPost = async (endpoint, body) => {
 
-    if (!body.token) {
-        let token = Cookies.get('tokenOlx');
-        if (token) {
-            body.token = token;
-            // console.log(token)
+    // if (!body.token) {
+    //     let token = Cookies.get('tokenOlx');
+    //     if (token) {
+    //         body.token = token;
+    //         // console.log(token)
 
-        }
-    }
+    //     }
+    // }
     const res = await fetch(BASEAPI + endpoint, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': 'Basic 123'
         },
         body: JSON.stringify(body)
     });
@@ -63,13 +64,13 @@ async function apiFetchPut(endpoint, body) {
         }
     }
 
-    const res = await fetch(BASEAPI + endpoint, {
+    const res = await fetch(`${BASEAPI + endpoint}?${qs.stringify(body)}`, {
         method: 'PUT',
         headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
+            // 'Content-Type': 'application/json',
+            // 'Accept': 'application/json',
+            'Authorization': 'Basic 123' 
         },
-        body: JSON.stringify(body),
     })
     const data = await res.json()
 
@@ -98,8 +99,14 @@ async function apiFetchPut(endpoint, body) {
 //     return json;
 // };
 
-const apiFetchGet = async (endpoint, body: any = []) => {
-    const res = await fetch(BASEAPI + endpoint, {
+const apiFetchGet = async (endpoint, body: any = []) => { // php
+    if (!body.token) {
+        let token = Cookies.get('tokenOlx');
+        if (token) {
+            body.token = token;
+        }
+    }
+    const res = await fetch(`${BASEAPI + endpoint}?${qs.stringify(body)}`, {
         method: 'GET',
         headers: { 'Authorization': 'Basic 123' },
     });
@@ -110,7 +117,7 @@ const apiFetchGet = async (endpoint, body: any = []) => {
         window.location.href = '/olx-reactjs/signin';
         return;
     }
-
+    // console.log(`${BASEAPI + endpoint}?${qs.stringify(body)}`)
     return json;
 };
 
@@ -149,14 +156,14 @@ export const OlxAPI = {
         const json = await apiFetchGet(
             '/ad/list',
             options
-        );
+        ); //console.log(json)
         return json;
     },
 
     getAd: async (id, other = false) => {
         const json = await apiFetchGet(
-            '/ad/item',
-            { id, other }
+            `/ad/${id}`,
+            // { id, other }
         );
         return json;
     },
@@ -182,7 +189,7 @@ export const OlxAPI = {
             '/user/me',
             {
                 name: key === 'name' ? data : undefined,
-                email: key === 'email'? data : undefined,
+                email: key === 'email' ? data : undefined,
                 state: key === 'state' ? data : undefined,
                 password: key === 'pass' ? data : undefined
             }
