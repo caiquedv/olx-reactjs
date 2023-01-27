@@ -15,7 +15,7 @@ export const Account = () => {
         const getUserInfo = async () => {
             const json = await OlxAPI.getUserData(Cookies.get('tokenOlx'));
             setUserJson(json);
-            // console.log(json)
+             //console.log(json)
         };
         getUserInfo();
         // console.log(typeof(userJson));
@@ -30,10 +30,10 @@ export const Account = () => {
             </div>
 
 
-            {/* <div className="AdsArea">
+            <div className="AdsArea">
                 <h2>Meus Anúncios</h2>
                 <UserAdsForm userData={userJson} />
-            </div> */}
+            </div>
 
         </MyAccContainer>
 

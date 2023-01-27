@@ -49,11 +49,11 @@ export const UserAdsForm = (userJson) => {
             setAdTitle(adItem.title);
             setAdStatus(adItem.status);
             setAdCategory(adItem.category);
-            setNegPrice(adItem.priceNegotiable);
+            setNegPrice(adItem.price_negotiable);
             setAdPrice(adItem.price);
             setAdDescription(adItem.description !== 'undefined' ? adItem.description : '');
             setAdImages(adItem.images);
-            setAdId(adItem._id);
+            setAdId(adItem.id);
             // console.log(adItem);
 
         } else {
@@ -87,12 +87,12 @@ export const UserAdsForm = (userJson) => {
         if (errors.length === 0) {
             const fData: any = new FormData();
             fData.append('title', adTitle);
-            fData.append('status', adStatus);
+            // fData.append('status', adStatus);
             fData.append('price', adPrice);
-            fData.append('priceneg', adNegPrice);
+            fData.append('price_negotiable', adNegPrice);
             fData.append('description', adDescription);
             fData.append('category', adSlugIdCategory);
-            fData.append('delImages', deletedImages);
+            // fData.append('delImages', deletedImages);
             // if (deletedImages[0]) {
             //     adImages.map((item) => {
             //         if (!deletedImages.includes(item.url)) newImage.push(item);
@@ -100,12 +100,12 @@ export const UserAdsForm = (userJson) => {
             //     fData.append('images', newImage)
             // };
 
-            if (fileField.current.files.length > 0) {
-                for (let i = 0; i < fileField.current.files.length; i++) {
-                    // console.log(fileField.current.files)
-                    fData.append('img', fileField.current.files[i]);
-                }
-            }
+            // if (fileField.current.files.length > 0) {
+            //     for (let i = 0; i < fileField.current.files.length; i++) {
+            //         // console.log(fileField.current.files)
+            //         fData.append('img', fileField.current.files[i]);
+            //     }
+            // }
             const json = await OlxAPI.updateAds(fData, adId); //console.log(json)
             if (!json.error) {
                 setDisabledModal(true);
@@ -123,10 +123,10 @@ export const UserAdsForm = (userJson) => {
         const getEditableAds = (json) => {
             try {
                 const userData = json.userData;
-                setUserAds(userData.ads);
+                setUserAds(userData.data[0].ads);
             } catch { }
-        };// console.log(userJson)
-        getEditableAds(userJson);
+        }; 
+        getEditableAds(userJson); //console.log(userAds)
     }, [userJson]);
 
     useEffect(() => {
@@ -139,12 +139,12 @@ export const UserAdsForm = (userJson) => {
 
     return (
         <AdsArea>
-            {/* {userAds.map((item: any, index) =>
+            {userAds.map((item: any, index) =>
                 <div className="editableAds" key={index}>
                     <AdItem data={item} />
                     <button id="" onClick={(e) => modalHandler(e, item)}>Editar</button>
                 </div>
-            )} */}
+            )}
             {!disabledModal &&
 
 
