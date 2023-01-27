@@ -9,23 +9,22 @@ export const AdItem = (props) => {
         price = 'Preço Negociável';
     } else {
         price = `R$ ${props.data.price}`;
-    } // console.log(props)
-    // console.log(props.data);
+    } //console.log(props.data.img)
+    //  console.log(props.data.img);
 
     return (
         <Item className="adItem">
             <Link to={`/olx-reactjs/ad/${props.data.id ? props.data.id : props.data._id}`}>
                 <div className="itemImage">
 
-                    {props.data.images &&
+                    {/* {!props.data.images &&
                         <img src={`http://localhost:2000/media/${props.data.images[0] ? props.data.images[0].url : 'default.jpg'}`}
                             alt=""
                         />
-                    }
+                    } */}
 
-                    {!props.data.images &&
-                        <img src={props.data.image} alt="" />
-                    }
+                    <img src={props.data.img ?? "http://localhost/adianti/template/app/images/adImages/default.jpg"} alt="" />
+
                 </div>
                 <div className="itemName">{props.data.title}</div>
                 <div className="itemPrice">{price}</div>

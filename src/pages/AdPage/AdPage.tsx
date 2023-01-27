@@ -18,10 +18,10 @@ export const AdPage = () => {
     useEffect(() => {
         const getAdInfo = async (id) => {
             const json = await OlxAPI.getAd(id, true);
-            setAdInfo(json.data);//console.log(adInfo)
+            setAdInfo(json.data);
             // setLoading(false);
         }
-        getAdInfo(id); 
+        getAdInfo(id); //console.log(adInfo.img)
     }, [id]);
 
     const formatDate = (date) => {
@@ -53,10 +53,10 @@ export const AdPage = () => {
                 <div className="leftSide">
                     <div className="box">
                         <div className="adImage">
-                            {loading && <Fake height={300} />}
-                            {adInfo.images &&
+                            {/* {loading && <Fake height={300} />} */}
+                            {adInfo.img &&
                                 <Slide>
-                                    {adInfo.images.map((item, index) =>
+                                    {[adInfo.img].map((item, index) =>
                                         <div key={index} className="each-slide">
                                             <img src={item} alt="" />
                                         </div>
@@ -66,7 +66,7 @@ export const AdPage = () => {
                         </div>
                         <div className="ad-Info">
                             <div className="adName">
-                                {loading && <Fake height={20} />}
+                                {/* {loading && <Fake height={20} />} */}
                                 {adInfo.title &&
                                     <h2>{adInfo.title}</h2>
                                 }
@@ -75,7 +75,7 @@ export const AdPage = () => {
                                 }
                             </div>
                             <div className="adDescription">
-                                {loading && <Fake height={100} />}
+                                {/* {loading && <Fake height={100} />} */}
                                 {adInfo.description !== 'undefined' ? adInfo.description : 'Sem descrição'}
                                 <hr /> 
                                 {adInfo.views &&
@@ -87,7 +87,7 @@ export const AdPage = () => {
                 </div>
                 <div className="rightSide">
                     <div className="box box--padding">
-                        {loading && <Fake height={20} />}
+                        {/* {loading && <Fake height={20} />} */}
                         {adInfo.price_negotiable === "true" &&
                             "Preço Negociável"
                         }
@@ -95,7 +95,7 @@ export const AdPage = () => {
                             <div className="price">Preço: <span>R$ {adInfo.price}</span></div>
                         }
                     </div>
-                    {loading && <Fake height={50} />}
+                    {/* {loading && <Fake height={50} />} */}
                     {adInfo.userInfo &&
                         <>
                             <a href={`mailto:${adInfo.userInfo.email}`} target="_blank" className="contactSellerLink">Fale com o vendedor</a>
